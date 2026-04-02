@@ -14,9 +14,29 @@ function deleteLast() {
 
 function calculate() {
     try {
-        // eval() takes the string (e.g., "2+2") and computes it
+        
         display.value = eval(display.value);
     } catch (error) {
         display.value = "Error";
     }
 }
+
+window.addEventListener('keydown', function(event) {
+    const key = event.key;
+    if ("0123456789+-*/.".includes(key)) {
+        appendToDisplay(key);
+    } 
+    
+    else if (key === "Enter") {
+        event.preventDefault();
+        calculate();
+    } 
+    
+    else if (key === "Backspace") {
+        deleteLast();
+    } 
+    
+    else if (key === "Escape") {
+        clearDisplay();
+    }
+});
